@@ -395,388 +395,130 @@ Template Name: home
    <div class="container">
       <!-- Section Heading -->
       <div class="section-heading">
-         <h2>Our Activities</h2>
+         <h2>Чим ми займаємося?</h2>
       </div>
       <!--Navigation -->
       <ul class="nav nav-tabs" id="myTab">
-         <li class="active"><a href="#tab1" data-toggle="tab">Music</a></li>
-         <li><a href="#tab2" data-toggle="tab">Spanish</a></li>
-         <li><a href="#tab3" data-toggle="tab">Lunch</a></li>
-         <li><a href="#tab4" data-toggle="tab">Swimming</a></li>
-         <li><a href="#tab5" data-toggle="tab">Playground</a></li>
+         <?php
+         $my_posts = get_posts([
+            'numberposts' => -1,
+            'post_type'   => 'activities',
+            'order' => 'ASC',
+            'suppress_filters' => true
+         ]);
+         $counter = 1;
+         foreach ($my_posts as $post) {
+            setup_postdata($post);
+         ?>
+            <li class="<?php if ($counter == 1) {
+                           echo 'active';
+                        }; ?>"><a href="#tab<?php echo $counter; ?>" data-toggle="tab"><?php the_title(); ?></a></li>
+         <?php
+            $counter++;
+         }
+
+         wp_reset_postdata();
+         ?>
       </ul>
       <div class="tabbable">
          <div class="tab-content col-md-12 col-centered">
             <!--Tab Content 1 -->
-            <div class="tab-pane active in fade" id="tab1">
-               <div class="row">
-                  <div class="col-md-5 col-lg-5 pull-left">
-                     <!-- Activity image-->
-                     <img src="<?php bloginfo('template_url'); ?>/assets/img/activity1.jpg" alt="" class="img-responsive img-circle">
-                  </div>
-                  <div class="col-md-7 col-lg-7 pull-left">
-                     <!-- Activity text-->
-                     <h3>Music Classes</h3>
-                     <!-- Accordion -->
-                     <div class="panel-group" id="accordion">
-                        <!-- Question 1 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Activity Description</a>
-                              </h6>
-                           </div>
-                           <div id="collapse1" class="panel-collapse collapse in">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                        <!--/panel -->
-                        <!-- Question 2 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse2">Age Group</a>
-                              </h6>
-                           </div>
-                           <div id="collapse2" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies, vest ibulum orci eget, viverra elit.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                        <!--/panel -->
-                        <!-- Question 3 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse3">When?</a>
-                              </h6>
-                           </div>
-                           <div id="collapse3" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies, vest ibulum orci eget, viverra elit.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                        <!--/panel -->
+            <?php
+            $my_posts = get_posts([
+               'numberposts' => -1,
+               'post_type'   => 'activities',
+               'order' => 'ASC',
+               'suppress_filters' => true
+            ]);
+            $counter = 1;
+            $collapse = 1;
+            foreach ($my_posts as $post) {
+               setup_postdata($post);
+            ?>
+               <div class="tab-pane <?php if ($counter == 1) {
+                                       echo 'active';
+                                    }; ?> in fade" id="tab<?php echo $counter; ?>">
+                  <div class="row">
+                     <div class="col-md-5 col-lg-5 pull-left">
+                        <?php the_post_thumbnail('post-thumbnail', [
+                           'class' => 'img-responsive img-circle'
+                        ]); ?>
                      </div>
-                     <!-- /.accordion -->
-                  </div>
-                  <!-- /.col-md-7 -->
-               </div>
-               <!-- /.row -->
-            </div>
-            <!-- /#tab1 -->
-            <!--Tab Content 2 -->
-            <div class="tab-pane fade" id="tab2">
-               <div class="row">
-                  <div class="col-md-5 col-lg-5 pull-left">
-                     <!-- Activity image-->
-                     <img src="<?php bloginfo('template_url'); ?>/assets/img/activity2.jpg" alt="" class="img-responsive img-circle">
-                  </div>
-                  <div class="col-md-7 col-lg-7 pull-left">
-                     <!-- Activity text-->
-                     <h3>Spanish Classes</h3>
-                     <!-- Accordion -->
-                     <div class="panel-group" id="accordion2">
-                        <!-- Question 1 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse4">Activity Description</a>
-                              </h6>
-                           </div>
-                           <div id="collapse4" class="panel-collapse collapse in">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies.
-                                 </p>
+                     <div class="col-md-7 col-lg-7 pull-left">
+                        <!-- Activity text-->
+                        <h3><?php the_title(); ?></h3>
+                        <!-- Accordion -->
+                        <div class="panel-group" id="accordion<?php echo $counter; ?>">
+                           <!-- Question 1 -->
+                           <div class="panel">
+                              <div class="panel-heading">
+                                 <h6 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion<?php echo $counter; ?>" href="#collapse<?php echo $collapse; ?>">Детальний опис</a>
+                                 </h6>
+                              </div>
+                              <div id="collapse<?php echo $collapse;
+                                                $collapse++; ?>" class="panel-collapse collapse in">
+                                 <div class="panel-body">
+                                    <p>
+                                       <?php
+                                       the_field(wp_strip_all_tags(get_the_content()) . '-desc');
+                                       ?>
+                                    </p>
+                                 </div>
                               </div>
                            </div>
-                        </div>
-                        <!--/panel -->
-                        <!-- Question 2 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse5">Age Group</a>
-                              </h6>
-                           </div>
-                           <div id="collapse5" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies, vest ibulum orci eget, viverra elit.
-                                 </p>
+                           <!--/panel -->
+                           <!-- Question 2 -->
+                           <div class="panel">
+                              <div class="panel-heading">
+                                 <h6 class="panel-title">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion<?php echo $counter; ?>" href="#collapse<?php echo $collapse; ?>">Вікові групи</a>
+                                 </h6>
+                              </div>
+                              <div id="collapse<?php echo $collapse;
+                                                $collapse++; ?>" class="panel-collapse collapse">
+                                 <div class="panel-body">
+                                    <p>
+                                       <?php
+                                       the_field(wp_strip_all_tags(get_the_content()) . '-age');
+                                       ?>
+                                    </p>
+                                 </div>
                               </div>
                            </div>
-                        </div>
-                        <!--/panel -->
-                        <!-- Question 3 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse6">When?</a>
-                              </h6>
-                           </div>
-                           <div id="collapse6" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies, vest ibulum orci eget, viverra elit.
-                                 </p>
+                           <!--/panel -->
+                           <!-- Question 3 -->
+                           <div class="panel">
+                              <div class="panel-heading">
+                                 <h6 class="panel-title">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion<?php echo $counter; ?>" href="#collapse<?php echo $collapse; ?>">Час занять</a>
+                                 </h6>
+                              </div>
+                              <div id="collapse<?php echo $collapse;
+                                                $collapse++; ?>" class="panel-collapse collapse">
+                                 <div class="panel-body">
+                                    <p>
+                                       <?php
+                                       the_field(wp_strip_all_tags(get_the_content()) . '-time');
+                                       ?>
+                                    </p>
+                                 </div>
                               </div>
                            </div>
+                           <!--/panel -->
                         </div>
-                        <!--/panel -->
+                        <!-- /.accordion -->
                      </div>
-                     <!-- /.accordion -->
+                     <!-- /.col-md-7 -->
                   </div>
-                  <!-- /.col-md-7 -->
+                  <!-- /.row -->
                </div>
-               <!-- /.row -->
-            </div>
-            <!-- /#tab2 -->
-            <!--Tab Content 3 -->
-            <div class="tab-pane fade" id="tab3">
-               <div class="row">
-                  <div class="col-md-5 col-lg-5 pull-left">
-                     <!-- Activity image-->
-                     <img src="<?php bloginfo('template_url'); ?>/assets/img/activity3.jpg" alt="" class="img-responsive img-circle">
-                  </div>
-                  <div class="col-md-7 col-lg-7 pull-left">
-                     <!-- Activity text-->
-                     <h3>Lunch</h3>
-                     <!-- Accordion -->
-                     <div class="panel-group" id="accordion3">
-                        <!-- Question 1 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapse7">Activity Description</a>
-                              </h6>
-                           </div>
-                           <div id="collapse7" class="panel-collapse collapse in">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                        <!--/panel -->
-                        <!-- Question 2 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapse8">Age Group</a>
-                              </h6>
-                           </div>
-                           <div id="collapse8" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies, vest ibulum orci eget, viverra elit.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                        <!--/panel -->
-                        <!-- Question 3 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion3" href="#collapse9">When?</a>
-                              </h6>
-                           </div>
-                           <div id="collapse9" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies, vest ibulum orci eget, viverra elit.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                        <!--/panel -->
-                     </div>
-                     <!-- /.accordion -->
-                  </div>
-                  <!-- /.col-md-7 -->
-               </div>
-               <!-- /.row -->
-            </div>
-            <!-- /#tab3 -->
-            <!--Tab Content 4 -->
-            <div class="tab-pane fade" id="tab4">
-               <div class="row">
-                  <div class="col-md-5 col-lg-5 pull-left">
-                     <!-- Activity image-->
-                     <img src="<?php bloginfo('template_url'); ?>/assets/img/activity4.jpg" alt="" class="img-responsive img-circle">
-                  </div>
-                  <div class="col-md-7 col-lg-7 pull-left">
-                     <!-- Activity text-->
-                     <h3>Swimming</h3>
-                     <!-- Accordion -->
-                     <div class="panel-group" id="accordion4">
-                        <!-- Question 1 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion4" href="#collapse10">Activity Description</a>
-                              </h6>
-                           </div>
-                           <div id="collapse10" class="panel-collapse collapse in">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                        <!--/panel -->
-                        <!-- Question 2 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion4" href="#collapse11">Age Group</a>
-                              </h6>
-                           </div>
-                           <div id="collapse11" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies, vest ibulum orci eget, viverra elit.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                        <!--/panel -->
-                        <!-- Question 3 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion4" href="#collapse12">When?</a>
-                              </h6>
-                           </div>
-                           <div id="collapse12" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies, vest ibulum orci eget, viverra elit.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                        <!--/panel -->
-                     </div>
-                     <!-- /.accordion -->
-                  </div>
-                  <!-- /.col-md-7 -->
-               </div>
-               <!-- /.row -->
-            </div>
-            <!-- /#tab4 -->
-            <!--Tab Content 5 -->
-            <div class="tab-pane fade" id="tab5">
-               <div class="row">
-                  <div class="col-md-5 col-lg-5 pull-left">
-                     <!-- Activity image-->
-                     <img src="<?php bloginfo('template_url'); ?>/assets/img/activity5.jpg" alt="" class="img-responsive img-circle">
-                  </div>
-                  <div class="col-md-7 col-lg-7 pull-left">
-                     <!-- Activity text-->
-                     <h3>Playground</h3>
-                     <!-- Accordion -->
-                     <div class="panel-group" id="accordion5">
-                        <!-- Question 1 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion5" href="#collapse13">Activity Description</a>
-                              </h6>
-                           </div>
-                           <div id="collapse13" class="panel-collapse collapse in">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                        <!--/panel -->
-                        <!-- Question 2 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion5" href="#collapse14">Age Group</a>
-                              </h6>
-                           </div>
-                           <div id="collapse14" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies, vest ibulum orci eget, viverra elit.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                        <!--/panel -->
-                        <!-- Question 3 -->
-                        <div class="panel">
-                           <div class="panel-heading">
-                              <h6 class="panel-title">
-                                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion5" href="#collapse16">When?</a>
-                              </h6>
-                           </div>
-                           <div id="collapse16" class="panel-collapse collapse">
-                              <div class="panel-body">
-                                 <p>Patatemp dolupta orem retibusam qui commolu
-                                    les felis tiam non metus ali quam eros Pellentesque turpis lectus, placerat a
-                                    ultricies a, posuere a nibh. Fusce mollis imperdiet interdum donec eget metus
-                                    auguen unc vel mauris ultricies, vest ibulum orci eget, viverra elit.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                        <!--/panel -->
-                     </div>
-                     <!-- /.accordion -->
-                  </div>
-                  <!-- /.col-md-7 -->
-               </div>
-               <!-- /.row -->
-            </div>
-            <!-- /#tab5 -->
+            <?php
+               $counter++;
+            }
+
+            wp_reset_postdata();
+            ?>
          </div>
          <!--tab-content-->
       </div>
@@ -799,158 +541,27 @@ Template Name: home
    <div class="container">
       <!-- Section heading -->
       <div class="section-heading">
-         <h2>Our Gallery</h2>
+         <h2>Наші Фото</h2>
       </div>
       <!-- Navigation -->
       <div class="text-center col-md-12">
-         <ul class="nav nav-pills cat text-center" role="tablist" id="gallerytab">
-            <li class="active"><a href="#" data-toggle="tab" data-filter="*">All</a>
-            <li><a href="#" data-toggle="tab" data-filter=".events">Events</a></li>
-            <li><a href="#" data-toggle="tab" data-filter=".facilities">Our Facilities</a></li>
-         </ul>
+         <?php
+         $my_posts = get_posts([
+            'numberposts' => -1,
+            'post_type'   => 'gallery',
+            'order' => 'ASC',
+            'suppress_filters' => true
+         ]);
+         foreach ($my_posts as $post) {
+            setup_postdata($post);
+         ?>
+            <?php the_content(); ?>
       </div>
-      <!-- Gallery -->
-      <div class="row">
-         <div class="col-md-12">
-            <div id="lightbox">
-               <!-- Image 1 -->
-               <div class="col-sm-6 col-md-6 col-lg-4 events">
-                  <div class="portfolio-item">
-                     <div class="gallery-thumb">
-                        <img class="img-responsive" src="<?php bloginfo('template_url'); ?>/assets/img/gallery1.jpg" alt="">
-                        <span class="overlay-mask"></span>
-                        <a href="img/gallery1.jpg" data-gal="prettyPhoto[gallery]" class="link centered" title="You can add caption to pictures.">
-                           <i class="fa fa-expand"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <!-- Image 2 -->
-               <div class="col-sm-6 col-md-6 col-lg-4 facilities">
-                  <div class="portfolio-item">
-                     <div class="gallery-thumb">
-                        <img class="img-responsive" src="<?php bloginfo('template_url'); ?>/assets/img/gallery2.jpg" alt="">
-                        <span class="overlay-mask"></span>
-                        <a href="img/gallery2.jpg" data-gal="prettyPhoto[gallery]" class="link centered" title="You can add caption to pictures.">
-                           <i class="fa fa-expand"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <!-- Image 3 -->
-               <div class="col-sm-6 col-md-6 col-lg-4 facilities">
-                  <div class="portfolio-item">
-                     <div class="gallery-thumb">
-                        <img class="img-responsive" src="<?php bloginfo('template_url'); ?>/assets/img/gallery3.jpg" alt="">
-                        <span class="overlay-mask"></span>
-                        <a href="img/gallery3.jpg" data-gal="prettyPhoto[gallery]" class="link centered" title="You can add caption to pictures.">
-                           <i class="fa fa-expand"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <!-- Image 4 -->
-               <div class="col-sm-6 col-md-6 col-lg-4 events">
-                  <div class="portfolio-item">
-                     <div class="gallery-thumb">
-                        <img class="img-responsive" src="<?php bloginfo('template_url'); ?>/assets/img/gallery4.jpg" alt="">
-                        <span class="overlay-mask"></span>
-                        <a href="img/gallery4.jpg" data-gal="prettyPhoto[gallery]" class="link centered" title="You can add caption to pictures.">
-                           <i class="fa fa-expand"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <!-- Image 5 -->
-               <div class="col-sm-6 col-md-6 col-lg-4 facilities">
-                  <div class="portfolio-item">
-                     <div class="gallery-thumb">
-                        <img class="img-responsive" src="<?php bloginfo('template_url'); ?>/assets/img/gallery5.jpg" alt="">
-                        <span class="overlay-mask"></span>
-                        <a href="img/gallery5.jpg" data-gal="prettyPhoto[gallery]" class="link centered" title="You can add caption to pictures.">
-                           <i class="fa fa-expand"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <!-- Image 6 -->
-               <div class="col-sm-6 col-md-6 col-lg-4 facilities">
-                  <div class="portfolio-item">
-                     <div class="gallery-thumb">
-                        <img class="img-responsive" src="<?php bloginfo('template_url'); ?>/assets/img/gallery6.jpg" alt="">
-                        <span class="overlay-mask"></span>
-                        <a href="img/gallery6.jpg" data-gal="prettyPhoto[gallery]" class="link centered" title="You can add caption to pictures.">
-                           <i class="fa fa-expand"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <!-- Image 7 -->
-               <div class="col-sm-6 col-md-6 col-lg-4 events">
-                  <div class="portfolio-item">
-                     <div class="gallery-thumb">
-                        <img class="img-responsive" src="<?php bloginfo('template_url'); ?>/assets/img/gallery7.jpg" alt="">
-                        <span class="overlay-mask"></span>
-                        <a href="img/gallery7.jpg" data-gal="prettyPhoto[gallery]" class="link centered" title="You can add caption to pictures.">
-                           <i class="fa fa-expand"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <!-- Image 8 -->
-               <div class="col-sm-6 col-md-6 col-lg-4 events">
-                  <div class="portfolio-item">
-                     <div class="gallery-thumb">
-                        <img class="img-responsive" src="<?php bloginfo('template_url'); ?>/assets/img/gallery8.jpg" alt="">
-                        <span class="overlay-mask"></span>
-                        <a href="img/gallery8.jpg" data-gal="prettyPhoto[gallery]" class="link centered" title="You can add caption to pictures.">
-                           <i class="fa fa-expand"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <!-- Image 9 -->
-               <div class="col-sm-6 col-md-6 col-lg-4 facilities">
-                  <div class="portfolio-item">
-                     <div class="gallery-thumb">
-                        <img class="img-responsive" src="<?php bloginfo('template_url'); ?>/assets/img/gallery9.jpg" alt="">
-                        <span class="overlay-mask"></span>
-                        <a href="img/gallery9.jpg" data-gal="prettyPhoto[gallery]" class="link centered" title="You can add caption to pictures.">
-                           <i class="fa fa-expand"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <!-- Image 10 -->
-               <div class="col-sm-6 col-md-6 col-lg-4 facilities">
-                  <div class="portfolio-item">
-                     <div class="gallery-thumb">
-                        <img class="img-responsive" src="<?php bloginfo('template_url'); ?>/assets/img/gallery10.jpg" alt="">
-                        <span class="overlay-mask"></span>
-                        <a href="img/gallery10.jpg" data-gal="prettyPhoto[gallery]" class="link centered" title="You can add caption to pictures.">
-                           <i class="fa fa-expand"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <!-- Image 11 -->
-               <div class="col-sm-6 col-md-6 col-lg-4 facilities">
-                  <div class="portfolio-item">
-                     <div class="gallery-thumb">
-                        <img class="img-responsive" src="<?php bloginfo('template_url'); ?>/assets/img/gallery11.jpg" alt="">
-                        <span class="overlay-mask"></span>
-                        <a href="img/gallery11.jpg" data-gal="prettyPhoto[gallery]" class="link centered" title="You can add caption to pictures.">
-                           <i class="fa fa-expand"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <!-- Image 12 -->
-               <div class="col-sm-6 col-md-6 col-lg-4 facilities">
-                  <div class="portfolio-item">
-                     <div class="gallery-thumb">
-                        <img class="img-responsive" src="<?php bloginfo('template_url'); ?>/assets/img/gallery12.jpg" alt="">
-                        <span class="overlay-mask"></span>
-                        <a href="img/gallery12.jpg" data-gal="prettyPhoto[gallery]" class="link centered" title="You can add caption to pictures.">
-                           <i class="fa fa-expand"></i></a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- /lightbox-->
-         </div>
-         <!-- /col-md-12-->
-      </div>
-      <!-- /row -->
+   <?php
+         }
+
+         wp_reset_postdata();
+   ?>
    </div>
    <!-- /container -->
 </section>

@@ -1,24 +1,24 @@
 jQuery(function ($) {
 
 
-   // Window load function
+    // Window load function
 
     $(window).load(function () {
 
-	//Open street  Map
-	var mapcanvas = document.getElementById("map-canvas");
-	if(mapcanvas){
-	  // Element exists
-		var coord = [50.42945446235718, 30.53719594062633]; // <--- coordinates here
+        //Open street  Map
+        var mapcanvas = document.getElementById("map-canvas");
+        if (mapcanvas) {
+            // Element exists
+            var coord = [50.42945446235718, 30.53719594062633]; // <--- coordinates here
 
-		var map = L.map('map-canvas', { scrollWheelZoom:false}).setView(coord, 18);
+            var map = L.map('map-canvas', { scrollWheelZoom: false }).setView(coord, 18);
 
-		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 22,
-		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-		}).addTo(map);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 22,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
 
-    }
+        }
 
         // Page Preloader
 
@@ -27,13 +27,13 @@ jQuery(function ($) {
 
         //Load Skrollr
 
-		var skr0llr = skrollr.init({
-			forceHeight: false,
-			mobileCheck: function() {
+        var skr0llr = skrollr.init({
+            forceHeight: false,
+            mobileCheck: function () {
                 //hack - forces mobile version to be off
                 return false;
             }
-		});
+        });
 
         //Portfolio Isotope
 
@@ -47,14 +47,14 @@ jQuery(function ($) {
             }
         });
 
-		$(window).smartresize(function(){
-			$container.isotope({
-			columnWidth: '.col-sm-3'
-			});
-		});
+        $(window).smartresize(function () {
+            $container.isotope({
+                columnWidth: '.col-sm-3'
+            });
+        });
 
 
-		//Portfolio Nav Filter
+        //Portfolio Nav Filter
 
         $('.cat a').on('click', function () {
             $('.cat .active').removeClass('active');
@@ -112,9 +112,9 @@ jQuery(function ($) {
                 "<i class='flaticon-arrows-1'></i>",
                 "<i class='flaticon-arrows'></i>"
             ],
-			 responsive: {
-                1: {items: 1,},
-                991: {items: 2,},
+            responsive: {
+                1: { items: 1, },
+                991: { items: 2, },
             }
         });
 
@@ -141,9 +141,9 @@ jQuery(function ($) {
                 "<i class='flaticon-arrows'></i>"
             ],
             responsive: {
-                1: {items: 1,},
-                1000: {items: 2,},
-                1200: {items: 3,}
+                1: { items: 1, },
+                1000: { items: 2, },
+                1200: { items: 3, }
             }
         });
 
@@ -160,11 +160,11 @@ jQuery(function ($) {
                 "<i class='flaticon-arrows-1'></i>",
                 "<i class='flaticon-arrows'></i>"
             ],
-             responsive: {
-                1: {items: 1,},
-				550:{items: 2,},
-                1000: {items: 3,},
-                1200: {items: 4,}
+            responsive: {
+                1: { items: 1, },
+                550: { items: 2, },
+                1000: { items: 3, },
+                1200: { items: 4, }
             }
         });
 
@@ -183,17 +183,15 @@ jQuery(function ($) {
             /* light_rounded / dark_rounded / light_square / dark_square / facebook */
         });
 
-
-
     }); // end document ready
 
 
     //On Click  function
-	$(document).on('click',function(){
+    $(document).on('click', function () {
 
-			//Navbar toggle
-			$('.navbar .collapse').collapse('hide');
-	})
+        //Navbar toggle
+        $('.navbar .collapse').collapse('hide');
+    })
 
 
 });

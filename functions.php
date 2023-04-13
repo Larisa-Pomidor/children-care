@@ -42,7 +42,7 @@ function scripts_theme()
 
 function theme_support()
 {
-    add_theme_support('post-thumbnails', array('post', 'services', 'feedback', 'team'));
+    add_theme_support('post-thumbnails', array('post', 'services', 'feedback', 'team', 'activities'));
     add_theme_support('custom-logo');
     add_theme_support('title-tag');
 }
@@ -84,6 +84,8 @@ function fix_svg_mime_type($data, $file, $filename, $mimes, $real_mime = '')
 add_action('init', 'register_services');
 add_action('init', 'register_feedback');
 add_action('init', 'register_team');
+add_action('init', 'register_activities');
+add_action('init', 'register_gallery');
 
 function register_services()
 {
@@ -181,5 +183,73 @@ function register_team()
         'has_archive'         => false,
         'rewrite'             => true,
         'query_var'           => true,
+    ]);
+}
+
+function register_activities()
+{
+    register_post_type('activities', [
+        'taxonomies' => [], // post related taxonomies
+        'label'  => null,
+        'labels' => [
+            'name'               => 'Activities', // name for the post type.
+            'singular_name'      => 'Activity', // name for single post of that type.
+            'add_new'            => 'Add New Activity', // to add a new post.
+            'add_new_item'       => 'Adding Activity', // title for a newly created post in the admin panel.
+            'edit_item'          => 'Edit Activity', // for editing post type.
+            'new_item'           => 'New Activity', // new post's text.
+            'view_item'          => 'See Activity', // for viewing this post type.
+            'search_items'       => 'Search Activity', // search for these post types.
+            'not_found'          => 'Not Found', // if search has not found anything.
+            'parent_item_colon'  => '', // for parents (for hierarchical post types).
+            'menu_name'          => 'Activities', // menu name.
+        ],
+        'description'         => 'Чем мы занимаемся с детками',
+        'public'              => true,
+        'show_in_menu'        => true, // whether to in admin panel menu
+        'show_in_rest'        => true, // Add to REST API. WP 4.7.
+        'rest_base'           => null, // $post_type. WP 4.7.
+        'menu_position'       => 4,
+        'menu_icon'           => null,
+        'hierarchical'        => false,
+        'supports'            => ['title', 'editor', 'thumbnail'],
+        'has_archive'         => false,
+        'rewrite'             => true,
+        'query_var'           => true,
+        'taxonomies'          => array( 'category' )
+    ]);
+}
+
+function register_gallery()
+{
+    register_post_type('gallery', [
+        'taxonomies' => [], // post related taxonomies
+        'label'  => null,
+        'labels' => [
+            'name'               => 'Gallery', // name for the post type.
+            'singular_name'      => 'Gallery', // name for single post of that type.
+            'add_new'            => 'Add New Gallery', // to add a new post.
+            'add_new_item'       => 'Adding Gallery', // title for a newly created post in the admin panel.
+            'edit_item'          => 'Edit Gallery', // for editing post type.
+            'new_item'           => 'New Gallery', // new post's text.
+            'view_item'          => 'See Gallery', // for viewing this post type.
+            'search_items'       => 'Search Gallery', // search for these post types.
+            'not_found'          => 'Not Found', // if search has not found anything.
+            'parent_item_colon'  => '', // for parents (for hierarchical post types).
+            'menu_name'          => 'Gallery', // menu name.
+        ],
+        'description'         => 'Чем мы занимаемся с детками',
+        'public'              => true,
+        'show_in_menu'        => true, // whether to in admin panel menu
+        'show_in_rest'        => true, // Add to REST API. WP 4.7.
+        'rest_base'           => null, // $post_type. WP 4.7.
+        'menu_position'       => 4,
+        'menu_icon'           => null,
+        'hierarchical'        => false,
+        'supports'            => ['title', 'editor', 'thumbnail'],
+        'has_archive'         => false,
+        'rewrite'             => true,
+        'query_var'           => true,
+        'taxonomies'          => array( 'category' )
     ]);
 }
